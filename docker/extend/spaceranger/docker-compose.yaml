@@ -1,0 +1,9 @@
+services:
+
+  base:
+    image: pranavmishra90/facsimilab-spaceranger
+    build:
+      context: .
+      dockerfile: spaceranger.Dockerfile
+      tags:
+        - "pranavmishra90/facsimilab-spaceranger:latest"
