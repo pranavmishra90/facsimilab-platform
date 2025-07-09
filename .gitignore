@@ -13,6 +13,9 @@
 **.nv
 **/.ssh
 **/.vscode-server
+*.tar.xz
+*.tar.gz
+*.tar
 
 **/micromamba
 
@@ -26,7 +29,6 @@
 /tmp
 
 **/datalad
-**/spaceranger
 
 /docker/main/quarto.deb
 /docker/main/python-env/old-base-conda-lock.yml

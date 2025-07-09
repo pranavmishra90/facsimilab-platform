@@ -20,10 +20,18 @@ ENV DEBIAN_FRONTEND="noninteractive"
 ENV TZ="America/Chicago"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-ENV ENV_NAME=facsimilab
+ENV ENV_NAME=base
 
 ENV PATH="/opt/spaceranger:${PATH}"
 
-COPY spaceranger-4.0.1.tar.xz /opt/spaceranger
+RUN mkdir -p /opt/spaceranger
 
-RUN ls -lahg /opt/spaceranger
+# COPY spaceranger-4.0.1.tar.gz /opt/tar/spaceranger.tar.gz
+
+
+# RUN tar -xvf /opt/tar/spaceranger.tar.gz -C /opt/spaceranger && \
+#     rm -rf /opt/tar/spaceranger.tar.gz
+
+ADD spaceranger-4.0.1.tar.gz /opt
+
+ENV PATH="/opt/spaceranger-4.0.1:${PATH}"

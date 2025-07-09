@@ -1,9 +1,13 @@
 services:
 
-  base:
+  spaceranger:
     image: pranavmishra90/facsimilab-spaceranger
     build:
       context: .
       dockerfile: spaceranger.Dockerfile
       tags:
         - "pranavmishra90/facsimilab-spaceranger:latest"
+        - "pranavmishra90/facsimilab-spaceranger-4.0.1:v0.1.0"
+    container_name: spaceranger
+    command: "tail -F anything"
+    user: root
