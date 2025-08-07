@@ -1,10 +1,10 @@
 #!/bin/bash
 
-build_base=true
-build_main=true
-build_full=true
+build_base=false
+build_main=false
+build_full=false
 
-generate_conda_lock=false
+generate_conda_lock=true
 build_python_images=false
 
 DOCKER_BUILDKIT=1 # use docker buildx caching
