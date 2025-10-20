@@ -6,7 +6,9 @@ FROM mambaorg/micromamba:2.0.5 AS micromamba
 
 # ARG BASE_IMAGE_SHA="SHA"
 
-FROM nvidia/cuda:12.8.1-base-ubuntu24.04
+ARG FOUNDATION_IMAGE="nvidia/cuda:12.8.1-base-ubuntu24.04"
+
+FROM ${FOUNDATION_IMAGE}
 
 # This base image was created with
 # ./build.sh -d --image-name pranavmishra90/cuda --cuda-version 12.8.1 --os ubuntu --os-version 24.04 --arch x86_64
@@ -102,6 +104,9 @@ COPY --chown=$MAMBA_USER:$MAMBA_USER .profile /home/${MAMBA_USER}/.profile
 RUN echo "Facsimilab-Base $facsimilab_version_num" > /home/${MAMBA_USER}/.server_name.txt && \
     cat /home/${MAMBA_USER}/.profile > /home/${MAMBA_USER}/.bash_aliases
 
+# Install UV
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
 SHELL ["/usr/local/bin/_dockerfile_shell.sh"]
 
 ENTRYPOINT ["/usr/local/bin/_entrypoint.sh"]
@@ -127,5 +132,5 @@ LABEL org.opencontainers.image.description="Base image || FacsimiLab - A docker 
 LABEL org.opencontainers.image.source="https://github.com/FacsimiLab/FacsimiLab-platform"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.created=${ISO_DATETIME}
-LABEL org.opencontainers.image.base.name="docker.io/pranavmishra90/cuda:12.8.1-base-ubuntu22.04"
+LABEL org.opencontainers.image.base.name=${FOUNDATION_IMAGE}
 LABEL org.opencontainers.image.base.digest=${BASE_IMAGE_SHA}
